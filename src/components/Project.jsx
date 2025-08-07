@@ -8,7 +8,7 @@ import {
   Pointer,
 } from "lucide-react";
 
-export default function Project({projects}) {
+export default function Project({ projects }) {
   return (
     <>
       <section id="works" className="py-20 px-6">
@@ -33,28 +33,35 @@ export default function Project({projects}) {
                 key={project.id}
                 className="border border-gray-700 hover:shadow-lg  hover:shadow-gray-800 hover:-translate-y-1.5 transition-all duration-100"
               >
-                <div
-                  className={`h-48 ${project.image} relative overflow-hidden`}
-                >
-                  <div className="absolute inset-0 bg-black/20"></div>
-                </div>
+                {typeof project.image === "string" &&
+                project.image.startsWith("bg-") ? (
+                  <div className={`w-full h-48 ${project.image}`}></div>
+                ) : (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-60 object-cover rounded"
+                  />
+                )}
+
                 <div className="p-6 space-y-4">
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
                       <span
                         key={i}
-                        className="text-xs text-gray-400 bg-gray-800 px-2 py-1"
+                        className="text-xs cursor-pointer text-gray-400 hover:bg-gray-700 bg-gray-800 px-2 py-1"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                  <p className="text-gray-400">{project.description}</p>
+                  <h3 className="text-xl font-bold selection:text-gray-800 selection:bg-purple-400">{project.title}</h3>
+                  <p className="text-gray-400 selection:text-black selection:bg-purple-400">{project.description}</p>
                   <div className="flex space-x-4">
                     {project.links.live && (
                       <a
                         href={project.links.live}
+                        target="_blank"
                         className="border hover:translate-x-1 border-purple-400 text-purple-400 px-4 py-2 text-sm hover:bg-purple-400 hover:text-white transition-all"
                       >
                         Live -&gt;
@@ -63,6 +70,7 @@ export default function Project({projects}) {
                     {project.links.cached && (
                       <a
                         href={project.links.cached}
+                        target="_blank"
                         className="border border-gray-600 text-gray-400 px-4 py-2 text-sm hover:bg-gray-600 hover:text-white transition-all"
                       >
                         Cached &gt;

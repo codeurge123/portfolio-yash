@@ -32,6 +32,7 @@ export default function Skills({skills}) {
                   <div className="w-16 h-16 border border-gray-600 relative bottom-16"></div>
                 </div>
                 <div className="grid grid-cols-4 gap-1 w-20">
+                  {/* for dots ye kara hai */}
                   {[...Array(16)].map((_, i) => (
                     <div
                       key={i}
@@ -44,13 +45,13 @@ export default function Skills({skills}) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {Object.entries(skills).map(([category, items]) => (
-                <div key={category} className="border border-gray-700">
-                  <div className="bg-gray-800 px-4 py-2 border-b  border-gray-700">
-                    <h3 className="font-bold capitalize">
+                <div key={category} className="border border-gray-700 hover:bg-gray-800 transition-all duration-100">
+                  <div className="bg-gray-800 px-4 py-2 border-b  border-gray-700 ">
+                    <h3 className="font-bold selection:text-gray-900 selection:bg-purple-400 capitalize">
                       {category.replace("_", " ")}
                     </h3>
                   </div>
-                  <div className="p-4  space-y-1">
+                  <div className="p-4  space-y-1 ">
                     {items.map((item, i) => (
                       <div
                         key={i}

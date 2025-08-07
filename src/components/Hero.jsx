@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <div className="space-y-4">
+              <div className="space-y-4 mb-4">
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                   Yash Bansal is a{" "}
                   <span className="text-purple-400">Problem Solver</span> and
@@ -20,9 +20,11 @@ export default function Hero() {
                   creativity
                 </p>
               </div>
+              <a href="#contacts">
               <button className="border border-purple-400 text-purple-400 px-6 py-3 mt-2 hover:bg-purple-400 hover:text-white transition-all duration-300">
                 Contact me!!
               </button>
+              </a>
             </div>
 
             <div className="relative">

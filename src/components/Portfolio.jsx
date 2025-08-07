@@ -19,7 +19,7 @@ import About from "./About";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import QuoteSection from "./QuoteSection";
-
+import skincurex from "../assets/skincurex.png";
 const Portfolio = () => {
   const projects = [
     {
@@ -28,8 +28,8 @@ const Portfolio = () => {
       description:
         "SkinCureX is an AI-based web app that detects skin diseases from images, helping users with early diagnosis and awareness",
       tags: ["HTML", "CSS", "Python", "Javascript","TensorFlow","ML"],
-      image: "bg-orange-600",
-      links: { live: "#", cached: "#" },
+      image: skincurex,
+      links: { live: "#", cached: "https://github.com/codeurge316/SkinCureX" },
     },
     {
       id: 2,

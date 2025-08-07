@@ -37,7 +37,7 @@ export default function About() {
                 opportunities to grow as a developer and contribute to impactful
                 software projects.
               </p>
-              <div className="flex items-center hover:translate-x-1 transition-all">
+              <div className="flex items-center hover:translate-x-1.5 w-40 transition-all">
                 <button className="border border-purple-400 text-purple-400 px-6 py-3 hover:bg-purple-400 hover:text-white transition-all duration-300 flex items-center space-x-2">
                   <span>Read more</span>
                   <ArrowRight className="ml-2 w-4 h-4" />
