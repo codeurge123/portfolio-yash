@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import Modal from './Modal'
 import skincurex from '../assets/skincurex.png'
+import creatx from '../assets/creatx.png'
+import query from '../assets/query.png'
 // SideBar removed on this page to center content
 export default function Allproject() {
 
@@ -25,7 +27,7 @@ export default function Allproject() {
       title: "Creatx",
       description: "Currently working on this - stay tuned for more updates",
       tech: ["Reactjs", "TailwindCSS", "Node.js"],
-      image: "../public/creatx.png",
+      image: creatx,
       githubUrl: "https://github.com/codeurge123/Creatx",
       status: "In Progress",
       liveUrl: "https://creatxui.vercel.app/"
@@ -44,7 +46,7 @@ export default function Allproject() {
       title: "QueryDocs",
       description: "Web application for study MySQL",
       tech: ["React", "TailwindCSS", "Node.js", "vercel"],
-      image: "../public/query.png",
+      image: query,
       githubUrl: "https://github.com/codeurge123/QueryDocs",
       status: "Live",
       liveUrl: "https://query-docs-sql.vercel.app/#install"
