@@ -65,6 +65,7 @@ export default function Allproject() {
       title: "DIJI-YATRA",
       description: "Project on DSA to find the shortest path and optimize based on traffic conditions",
       tech: ["C++", "Graphs", "Data Structures"],
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=300&h=200&fit=crop",
       githubUrl: "https://github.com/codeurge123/DIJI-YATRA",
       status: "Live"
     },
