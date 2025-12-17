@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  Github,
-  Dribbble,
-  Linkedin,
-  ExternalLink,
   ArrowRight,
-  Pointer,
 } from "lucide-react";
+import Modal from './Modal'
+
 export default function About() {
+  const [open, setOpen] = useState(false)
+
   return (
     <>
       <section id="about-me" className="py-20 px-6">
@@ -38,7 +37,7 @@ export default function About() {
                 software projects.
               </p>
               <div className="flex items-center hover:translate-x-1.5 w-40 transition-all">
-                <button className="border border-purple-400 text-purple-400 px-6 py-3 hover:bg-purple-400 hover:text-white transition-all duration-300 flex items-center space-x-2">
+                <button onClick={() => setOpen(true)} className="border border-purple-400 text-purple-400 px-6 py-3 hover:bg-purple-400 hover:text-white transition-all duration-300 flex items-center space-x-2">
                   <span>Read more</span>
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </button>
@@ -71,6 +70,15 @@ export default function About() {
           </div>
         </div>
       </section>
+      <Modal open={open} onClose={() => setOpen(false)} title="About Yash">
+        <div className="space-y-3">
+          <p className="text-gray-300">Hello — I'm Yash Bansal, a software developer passionate about building full-stack web applications and solving algorithmic challenges. I focus on clean UI and performant code using React, Node.js and modern web tools.</p>
+          <h4 className="font-semibold">Experience</h4>
+          <p className="text-gray-300 text-sm">Intern at Delhi Transco Limited — assisted with grid monitoring, documentation, small automation scripts, and field support for operations.</p>
+          <h4 className="font-semibold">Education</h4>
+          <p className="text-gray-300 text-sm">B.Tech from Jaypee Institute of Information Technology, Noida.</p>
+        </div>
+      </Modal>
     </>
   );
 }

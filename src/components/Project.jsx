@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import {
   Github,
   Dribbble,
@@ -18,13 +19,13 @@ export default function Project({ projects }) {
               <span className="text-purple-400">#</span>projects
               <div className="h-0 w-96 ml-5 border border-purple-400"></div>
             </h2>
-            <a
-              href="#"
+            <Link
+              to="/projects"
               className="flex hover:translate-x-1 transition-all items-center space-x-2 text-white hover:text-purple-400 "
             >
               <span>View all</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

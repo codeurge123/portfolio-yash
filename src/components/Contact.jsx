@@ -8,30 +8,55 @@ import {
   Pointer,
 } from "lucide-react";
 import emailjs from 'emailjs-com'
+import Modal from './Modal'
+import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID, RECEIVER_EMAIL } from '../share/emailConfig'
+import { useState } from 'react'
 
 export default function Contact() {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalMessage, setModalMessage] = useState('')
 
-//     const sendEmail = (e) => {
-//     e.preventDefault();
+  React.useEffect(() => {
+    try {
+      if (EMAILJS_USER_ID && EMAILJS_USER_ID !== 'vGePn3EILzQ3nHAAR') {
+        emailjs.init(EMAILJS_USER_ID)
+      }
+    } catch (e) {
+      console.warn('EmailJS init failed', e)
+    }
+  }, [])
 
-//     emailjs
-//       .sendForm(
-//         "your_service_id",
-//         "your_template_id",
-//         e.target,
-//         "your_user_id" // or user key to mail
-//       )
-//       .then(
-//         (result) => {
-//           console.log(result.text);
-//           alert("Message Sent!");
-//         },
-//         (error) => {
-//           console.log(error.text);
-//           alert("Something went wrong");
-//         }
-//       );
-//   };
+  const sendEmail = (e) => {
+    e.preventDefault()
+
+    const form = e.target
+    const formData = {
+      from_name: form.name?.value || form.elements[0]?.value || 'Anonymous',
+      from_email: form.email?.value || form.elements[0]?.value,
+      message: form.message?.value || form.elements[1]?.value,
+      to_email: RECEIVER_EMAIL
+    }
+
+    if (!EMAILJS_SERVICE_ID || EMAILJS_SERVICE_ID === 'service_bgqn7mq') {
+      // No emailjs configured — still show confirmation and log data
+      console.warn('EmailJS not configured. Replace ids in src/share/emailConfig.js')
+      setModalMessage('Message queued locally (EmailJS not configured).')
+      setModalOpen(true)
+      form.reset()
+      return
+    }
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData, EMAILJS_USER_ID)
+      .then(() => {
+        setModalMessage('Message sent — thank you!')
+        setModalOpen(true)
+        form.reset()
+      }, (err) => {
+        console.error('EmailJS error', err)
+        setModalMessage('Failed to send message. Please try later.')
+        setModalOpen(true)
+      })
+  }
 
 
   return (
@@ -64,24 +89,29 @@ export default function Contact() {
                 <h3 className="font-bold mb-2">Message me here</h3>
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2 p-2 text-gray-400">
-                    <form onSubmit={() => {
-                         alert('Message Send Successfully')
-                    }}>
+                    <form onSubmit={sendEmail} className="w-full">
                       <input
+                        name="email"
                         type="email"
                         placeholder="Enter Email"
                         required
-                        className="bg-transparent mb-2 border border-gray-400 rounded w-96 p-2 outline-offset-1"
+                        className="bg-transparent mb-2 border border-gray-400 rounded w-full p-2 outline-offset-1"
                       />
                       <input
+                        name="name"
                         type="text"
+                        placeholder="Your name"
+                        className="bg-transparent border border-gray-400 rounded w-full p-2 outline-offset-1 mb-2"
+                      />
+                      <textarea
+                        name="message"
                         placeholder="Type Message"
                         required
-                        className="bg-transparent border border-gray-400 rounded ml-0 p-2 outline-offset-1"
+                        className="bg-transparent border border-gray-400 rounded w-full p-2 outline-offset-1 h-32 resize-none"
                       />
                       <button
                         type="submit"
-                        className="ml-4 p-2 bg-green-600 text-white text-bold hover:bg-green-700 rounded-lg hover:text-white"
+                        className="mt-3 ml-0 p-2 bg-green-600 text-white font-semibold hover:bg-green-700 rounded-lg w-full"
                       >
                         Submit
                       </button>
@@ -101,6 +131,9 @@ export default function Contact() {
           </div>
         </div>
       </section>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Contact">
+        <p className="text-sm text-gray-300">{modalMessage}</p>
+      </Modal>
     </>
   );
 }

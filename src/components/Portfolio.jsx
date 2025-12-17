@@ -29,7 +29,7 @@ const Portfolio = () => {
         "SkinCureX is an AI-based web app that detects skin diseases from images, helping users with early diagnosis and awareness",
       tags: ["HTML", "CSS", "Python", "Javascript","TensorFlow","ML"],
       image: skincurex,
-      links: { live: "#", cached: "https://github.com/codeurge316/SkinCureX" },
+      links: { live: "", cached: "https://github.com/codeurge316/SkinCureX" },
     },
     {
       id: 2,
@@ -38,7 +38,7 @@ const Portfolio = () => {
         "Digi-Yatra is a route optimization system that detects the shortest path for travelers within airports, enhancing navigation and reducing transit time",
       tags: ["C++", "Graph", "Data Structure"],
       image: "bg-green-600",
-      links: { live: "#" },
+      links: { cached: "https://github.com/codeurge123/DIJI-YATRA"},
     },
     {
       id: 3,
@@ -47,7 +47,7 @@ const Portfolio = () => {
         "SwiftRoute is an AI-powered trip planner that suggests optimized travel routes, personalized itineraries, and smart recommendations based on user preferences",
       tags: ["React", "TailwindCSS", "Firebase", "API" , "Javascript"],
       image: "bg-purple-600",
-      links: { live: "#" },
+      links: { cached: "https://github.com/codeurge123/swiftroute" },
     },
   ];
 
@@ -83,6 +83,8 @@ const Portfolio = () => {
 
       {/* Projects Section */}
       <Project projects={projects} />
+
+      {/* All Projects page is available at /projects (router) */}
 
       {/* Skills Section */}
       <Skills skills={skills} />

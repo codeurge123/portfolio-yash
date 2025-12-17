@@ -1,138 +1,140 @@
 import React from 'react'
-import NavBar from './NavBar'
+import { Link } from 'react-router-dom'
 import {
   Github,
   Dribbble,
   Linkedin,
   ExternalLink,
   ArrowRight,
+  ArrowLeft,
   Pointer,
+  Globe,
+  GitBranch,
 } from "lucide-react";
+import Modal from './Modal'
+import skincurex from '../assets/skincurex.png'
+// SideBar removed on this page to center content
 export default function Allproject() {
 
-const [selectedProject, setSelectedProject] = React.useState(null);
+  const [selectedProject, setSelectedProject] = React.useState(null);
+  const [showReadMore, setShowReadMore] = React.useState(false);
 
   const completeApps = [
     {
       id: 1,
-      title: "ChertNodes",
-      description: "Minecraft servers hosting",
-      tech: ["HTML", "SCSS", "Python", "Flask"],
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=300&h=200&fit=crop",
-      liveUrl: "#",
-      status: "Live"
+      title: "Creatx",
+      description: "Currently working on this - stay tuned for more updates",
+      tech: ["Reactjs", "TailwindCSS", "Node.js"],
+      image: "../public/creatx.png",
+      githubUrl: "https://github.com/codeurge123/Creatx",
+      status: "In Progress",
+      liveUrl: "https://creatxui.vercel.app/"
     },
     {
       id: 2,
-      title: "Kahoot Answers Viewer",
-      description: "Get answers to your kahoot quiz",
-      tech: ["CSS", "Express", "Node.js"],
-      image: "https://images.unsplash.com/photo-1606868306217-dbf5046868d2?w=300&h=200&fit=crop",
-      liveUrl: "#",
+      title: "SwiftRoute",
+      description: "AI Trip Planner suggesting optimized travel routes and personalized itineraries",
+      tech: ["JavaScript", "React", "TailwindCSS", "Firebase", "Gemini API"],
+      image: "../public/swiftroute.png",
+      githubUrl: "https://github.com/codeurge123/SwiftRoute",
       status: "Live"
     },
     {
       id: 3,
-      title: "ProtectX",
-      description: "Discord anti-crash bot",
-      tech: ["React", "Express", "Discord.js", "Node.js"],
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=300&h=200&fit=crop",
-      status: "Cached"
+      title: "QueryDocs",
+      description: "Web application for study MySQL",
+      tech: ["React", "TailwindCSS", "Node.js", "vercel"],
+      image: "../public/query.png",
+      githubUrl: "https://github.com/codeurge123/QueryDocs",
+      status: "Live",
+      liveUrl: "https://query-docs-sql.vercel.app/#install"
     },
     {
       id: 4,
-      title: "Kotik Bot",
-      description: "Multi-functional discord bot",
-      tech: ["HTML", "CSS", "JS"],
-      image: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=300&h=200&fit=crop",
-      liveUrl: "#",
+      title: "Alexa-PersonalAssistant",
+      description: "This is the python project which can perform any of the tasks only by listening to you",
+      tech: ["Python", "SpeechRecognition", "pyttsx3"],
+      image: "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=300&h=200&fit=crop",
+      githubUrl: "https://github.com/codeurge123/Alexa-PersonalAssistant",
       status: "Live"
     },
     {
       id: 5,
-      title: "Portfolio",
-      description: "You're using it rn",
-      tech: ["Vue", "TS", "Less"],
-      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=300&h=200&fit=crop",
-      githubUrl: "#",
-      status: "Github"
+      title: "DIJI-YATRA",
+      description: "Project on DSA to find the shortest path and optimize based on traffic conditions",
+      tech: ["C++", "Graphs", "Data Structures"],
+      githubUrl: "https://github.com/codeurge123/DIJI-YATRA",
+      status: "Live"
+    },
+    {
+      id: 6,
+      title: "SkinCureX",
+      description: "Software to provide early detection of skin diseases",
+      image: skincurex,
+      tech: ["JavaScript", "HTML", "CSS", "Python", "TensorFlow", "ML"],
+      githubUrl: "https://github.com/codeurge123/SkinCureX",
+      status: "Live"
     }
   ];
 
   const smallProjects = [
     {
       id: 6,
-      title: "Bot boilerplate",
-      description: "Start creating scalable discord.js bot with typescript in seconds",
-      tech: ["Discord.js", "TS", "JS"],
-      githubUrl: "#"
+      title: "YT-Speed-Controller-Extension",
+      description: "A chrome extension to control YouTube playback speed easily",
+      tech: ["JavaScript", "HTML", "CSS", "Chrome Extension"],
+      githubUrl: "https://github.com/codeurge123/YT-Speed-Controller-Extension",
+      status: "Live"
     },
     {
       id: 7,
-      title: "My blog",
-      description: "Front-end of my future blog website written in vue",
-      tech: ["VUE", "CSS", "JS"],
-      githubUrl: "#"
+      title: "To-Do-react",
+      description: "Manage To-Do tasks with this simple React app featuring add, delete, and mark as complete functionalities",
+      tech: ["JavaScript", "React", "tailwindCSS"],
+      githubUrl: "https://github.com/codeurge123/To-Do-react",
+      status: "Live",
+      liveUrl: "https://to-do-react-ruddy-zeta.vercel.app/"
     },
     {
       id: 8,
-      title: "Chess pro",
-      description: "Figma landing page about survival for viewing chess tournaments",
-      tech: ["Figma"],
-      figmaUrl: "#"
+      title: "leetcode-roaster",
+      description: "Get Roasted (React, API, Tailwind CSS)",
+      tech: ["JavaScript", "React", "Tailwind CSS", "API"],
+      githubUrl: "https://github.com/codeurge123/leetcode-roaster",
+      status: "Live",
+      liveUrl: "https://leetcode-roaster-inky.vercel.app/"
     },
     {
       id: 9,
-      title: "Crash protect website",
-      description: "Figma template for website about anti-raid, anti-crash discord bot",
-      tech: ["Figma"],
-      figmaUrl: "#"
+      title: "QR-Code-Generator",
+      description: "It is QR code generator for any URL or text it generates QR code",
+      tech: ["CSS", "HTML", "JavaScript", "API"],
+      githubUrl: "https://github.com/codeurge123/QR-Code-Generator",
+      status: "Live"
     },
     {
       id: 10,
-      title: "CSS expirements",
-      description: "Collection of my different little projects in css",
-      tech: ["HTML", "CSS"],
-      liveUrl: "#"
+      title: "currency-converter-react",
+      description: "happy coding",
+      tech: ["JavaScript", "React", "API", "TailwindCSS", "Vercel"],
+      githubUrl: "https://github.com/codeurge123/currency-converter-react",
+      status: "Live",
+      liveUrl: "https://currency-converter-react-self.vercel.app/"
     },
-    {
-      id: 11,
-      title: "Web Dev nvim config",
-      description: "Config for neovim perfect for web developer",
-      tech: ["Lua", "NeoVim"],
-      githubUrl: "#"
-    },
-    {
-      id: 12,
-      title: "Ooku",
-      description: "Simple link shortener with auth",
-      tech: ["Python", "Quart", "HTML"],
-      liveUrl: "#"
-    },
-    {
-      id: 13,
-      title: "School website",
-      description: "Figma template website for my school",
-      tech: ["Figma"],
-      figmaUrl: "#"
-    }
   ];
 
   const ProjectCard = ({ project, isLarge = false }) => (
-    <div 
-      className={`bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:transform hover:scale-105 ${isLarge ? 'h-64' : 'h-auto'}`}
-      onClick={() => setSelectedProject(project)}
-    >
+    <div className={`max-w-sm w-full bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-gray-600 transition-transform duration-300 hover:scale-105 cursor-pointer`} onClick={() => setSelectedProject(project)}>
       {isLarge && project.image && (
-        <div className="h-32 bg-gray-900 overflow-hidden">
-          <img 
-            src={project.image} 
+        <div className="h-48 bg-gray-900 overflow-hidden">
+          <img
+            src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover opacity-80 "
           />
         </div>
       )}
-      
+
       <div className="p-4">
         <div className="flex flex-wrap gap-1 mb-2">
           {project.tech.map((tech, index) => (
@@ -141,127 +143,79 @@ const [selectedProject, setSelectedProject] = React.useState(null);
             </span>
           ))}
         </div>
-        
+
         <h3 className="text-lg font-semibold text-white mb-2">{project.title}</h3>
         <p className="text-gray-400 text-sm mb-4">{project.description}</p>
-        
-        <div className="flex gap-2">
+
+        <div className="flex gap-2 items-center">
           {project.liveUrl && (
-            <button className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded text-sm flex items-center gap-1 transition-colors">
+            <a href={project.liveUrl} target="_blank" rel="noreferrer" className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded text-sm flex items-center gap-1 transition-colors">
               {project.status === "Live" ? "Live" : "View"} <ExternalLink size={14} />
-            </button>
+            </a>
           )}
           {project.githubUrl && (
-            <button className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm flex items-center gap-1 transition-colors">
+            <a href={project.githubUrl} target="_blank" rel="noreferrer" className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm flex items-center gap-1 transition-colors">
               Github <Github size={14} />
-            </button>
+            </a>
           )}
           {project.figmaUrl && (
-            <button className="bg-pink-600 hover:bg-pink-700 text-white px-3 py-1 rounded text-sm flex items-center gap-1 transition-colors">
+            <a href={project.figmaUrl} target="_blank" rel="noreferrer" className="bg-pink-600 hover:bg-pink-700 text-white px-3 py-1 rounded text-sm flex items-center gap-1 transition-colors">
               Figma <ExternalLink size={14} />
-            </button>
+            </a>
           )}
           {project.status === "Cached" && (
-            <span className="bg-yellow-600 text-white px-3 py-1 rounded text-sm">
+            <span className="bg-yellow-600 text-black px-3 py-1 rounded text-sm font-semibold">
               Cached
             </span>
           )}
+          <button onClick={() => setSelectedProject(project)} className="ml-auto text-sm text-purple-400 hover:underline">Details →</button>
         </div>
       </div>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Navigation */}
-      <nav className="flex items-center justify-between p-4 border-b border-gray-800">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-purple-600 rounded flex items-center justify-center">
-            <span className="text-xs font-bold">E</span>
+    <div id="all-projects" className="min-h-screen bg-gray-900 text-white flex justify-center">
+      <div className="w-full px-6 py-8 max-w-6xl">
+        <div className="mb-4 hover:translate-x-[-8px] transition-all duration-150">
+          <Link
+            to="/"
+            className="flex hover:translate-x-[-2px] text-md transition-all items-center space-x-2 text-white hover:text-purple-400 "
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back</span>
+          </Link>
+        </div>
+        <div className="text-center mb-8">
+          <h1 className="text-3xl justify-around font-bold"><p className="text-gray-400">List of my projects</p></h1>
+        </div>
+
+        {/* Complete Apps Section */}
+        <section className="mb-12">
+          <h2 className="text-xl font-semibold mb-6">
+            <span className="text-purple-400">#</span>complete-apps
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+            {completeApps.map((project) => (
+              <ProjectCard key={project.id} project={project} isLarge={true} />
+            ))}
           </div>
-          <span className="font-semibold">Elias</span>
-        </div>
-        
-        <div className="flex gap-6">
-          <a href="#home" className="text-purple-400 hover:text-purple-300 transition-colors">#home</a>
-          <a href="#works" className="text-gray-400 hover:text-gray-300 transition-colors">#works</a>
-          <a href="#about-me" className="text-gray-400 hover:text-gray-300 transition-colors">#about-me</a>
-          <a href="#contacts" className="text-gray-400 hover:text-gray-300 transition-colors">#contacts</a>
-          <span className="text-gray-400">EN</span>
-        </div>
-      </nav>
+        </section>
 
-      {/* Sidebar */}
-      <div className="flex">
-        <div className="w-12 border-r border-gray-800 flex flex-col items-center py-4 gap-4">
-          <Github className="text-gray-400 hover:text-white cursor-pointer transition-colors" size={20} />
-          <Globe className="text-gray-400 hover:text-white cursor-pointer transition-colors" size={20} />
-          <GitBranch className="text-gray-400 hover:text-white cursor-pointer transition-colors" size={20} />
-        </div>
-
-        {/* Main Content */}
-        <div className="flex-1 p-8">
-          <div className="max-w-6xl">
-            <h1 className="text-3xl font-bold mb-2">
-              <span className="text-purple-400">/</span>projects
-            </h1>
-            <p className="text-gray-400 mb-8">List of my projects</p>
-
-            {/* Complete Apps Section */}
-            <section className="mb-12">
-              <h2 className="text-xl font-semibold mb-6">
-                <span className="text-purple-400">#</span>complete-apps
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {completeApps.map((project) => (
-                  <ProjectCard key={project.id} project={project} isLarge={true} />
-                ))}
-              </div>
-            </section>
-
-            {/* Small Projects Section */}
-            <section>
-              <h2 className="text-xl font-semibold mb-6">
-                <span className="text-purple-400">#</span>small-projects
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {smallProjects.map((project) => (
-                  <ProjectCard key={project.id} project={project} />
-                ))}
-              </div>
-            </section>
+        {/* Small Projects Section */}
+        <section>
+          <h2 className="text-xl font-semibold mb-6">
+            <span className="text-purple-400">#</span>small-projects
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+            {smallProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
           </div>
-        </div>
+        </section>
       </div>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-800 p-6">
-        <div className="flex justify-between items-center max-w-6xl ml-20">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-6 h-6 bg-purple-600 rounded flex items-center justify-center">
-                <span className="text-xs font-bold">E</span>
-              </div>
-              <span className="font-semibold">Elias</span>
-              <span className="text-gray-400">elias@elias-dev.ml</span>
-            </div>
-            <p className="text-gray-400 text-sm">Web designer and front-end developer</p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold mb-2">Media</h3>
-            <div className="flex gap-3">
-              <Github className="text-gray-400 hover:text-white cursor-pointer transition-colors" size={20} />
-              <GitBranch className="text-gray-400 hover:text-white cursor-pointer transition-colors" size={20} />
-              <Globe className="text-gray-400 hover:text-white cursor-pointer transition-colors" size={20} />
-            </div>
-          </div>
-        </div>
-        
-        <div className="text-center mt-6 pt-4 border-t border-gray-800">
-          <p className="text-gray-400 text-sm">© Copyright 2022. Made by Elias</p>
-        </div>
-      </footer>
+      {/* footer removed for focused Allproject page */}
 
       {/* Decorative dots */}
       <div className="fixed top-1/4 left-4 opacity-20">
@@ -271,7 +225,7 @@ const [selectedProject, setSelectedProject] = React.useState(null);
           ))}
         </div>
       </div>
-      
+
       <div className="fixed bottom-1/4 right-4 opacity-20">
         <div className="grid grid-cols-5 gap-1">
           {Array.from({ length: 25 }).map((_, i) => (
@@ -279,6 +233,32 @@ const [selectedProject, setSelectedProject] = React.useState(null);
           ))}
         </div>
       </div>
+      {selectedProject && (
+        <Modal open={!!selectedProject} onClose={() => { setSelectedProject(null); setShowReadMore(false) }} title={selectedProject.title}>
+          <div className="space-y-4">
+            <p className="text-gray-300">{selectedProject.description}</p>
+            <div className="flex flex-wrap gap-2">
+              {selectedProject.tech?.map((t, i) => (
+                <span key={i} className="text-xs bg-gray-800 text-gray-200 px-2 py-1 rounded">{t}</span>
+              ))}
+            </div>
+            {!showReadMore ? (
+              <div className="flex gap-2">
+                <a href={selectedProject.liveUrl || '#'} className="text-purple-400 hover:underline">Open</a>
+                <button onClick={() => setShowReadMore(true)} className="ml-auto bg-blue-600 px-3 py-1 rounded">Read more</button>
+              </div>
+            ) : (
+              <div>
+                <h4 className="font-semibold">Skills & Experience</h4>
+                <p className="text-gray-300 text-sm mt-2">I interned at Delhi Transco Limited where I gained practical experience in electrical grid operations, monitoring and documenting system performance, and assisting with automation scripts. Skills: React, Node.js, basic networking, troubleshooting, and teamwork during field visits.</p>
+                <div className="mt-4 flex justify-end">
+                  <button onClick={() => { setShowReadMore(false); setSelectedProject(null) }} className="px-3 py-1 bg-green-600 rounded">Close</button>
+                </div>
+              </div>
+            )}
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

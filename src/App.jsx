@@ -1,14 +1,15 @@
-import { useState } from 'react'
-// import './App.css'
-import Portfolio from './components/Portfolio'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Portfolio from './components/Portfolio';
+import Allproject from './components/Allproject';
 
 function App() {
-  
-
   return (
-    <>
-     <Portfolio />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        <Route path="/projects" element={<Allproject />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

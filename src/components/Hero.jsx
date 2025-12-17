@@ -26,7 +26,6 @@ export default function Hero() {
               </button>
               </a>
             </div>
-
             <div className="relative">
               <div className="w-80 h-80 bg-gray-800 rounded-lg mx-auto relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900"></div>
